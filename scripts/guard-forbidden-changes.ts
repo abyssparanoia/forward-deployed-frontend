@@ -41,13 +41,21 @@ function getDiff(): string {
 
 function getDiffContent(): string {
   const isCI = !!process.env.CI
+  // Exclude vendor/generated public assets from diff content checks (e.g. mockServiceWorker.js)
+  const exclude = '":(exclude)**/public/mockServiceWorker.js"'
   if (isCI) {
-    return run('git diff HEAD~1 HEAD')
+    return run(`git diff HEAD~1 HEAD -- . ${exclude}`)
   }
   const base = run(
     'git merge-base HEAD origin/main 2>/dev/null || git merge-base HEAD origin/master 2>/dev/null || echo HEAD~1',
   )
-  return run(`git diff ${base} HEAD`) + '\n' + run('git diff') + '\n' + run('git diff --cached')
+  return (
+    run(`git diff ${base} HEAD -- . ${exclude}`) +
+    '\n' +
+    run(`git diff -- . ${exclude}`) +
+    '\n' +
+    run(`git diff --cached -- . ${exclude}`)
+  )
 }
 
 function checkForbiddenChanges(): Violation[] {
