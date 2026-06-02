@@ -4,3 +4,4 @@ dist
 pnpm-lock.yaml
 *.generated.*
 packages/api-client/src/generated
+**/public/mockServiceWorker.js

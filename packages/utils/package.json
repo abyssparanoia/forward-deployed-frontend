@@ -21,6 +21,6 @@
     "eslint": "^9.18.0",
     "@template/tsconfig": "workspace:*",
     "typescript": "^5.7.2",
-    "vitest": "^3.0.4"
+    "vitest": "^4.1.0"
   }
 }

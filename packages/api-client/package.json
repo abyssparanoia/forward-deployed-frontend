@@ -25,7 +25,7 @@
     "typescript": "^5.7.2",
     "react": "^19.0.0",
     "@types/react": "^19.0.2",
-    "vitest": "^3.0.4",
+    "vitest": "^4.1.0",
     "msw": "^2.7.0",
     "@mswjs/data": "^0.16.2"
   },
