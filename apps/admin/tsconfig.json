@@ -1,0 +1,8 @@
+{
+  "extends": "@template/tsconfig/react.json",
+  "include": ["src"],
+  "compilerOptions": {
+    "tsBuildInfoFile": "node_modules/.tmp/tsconfig.tsbuildinfo",
+    "types": ["vite/client", "@testing-library/jest-dom"]
+  }
+}

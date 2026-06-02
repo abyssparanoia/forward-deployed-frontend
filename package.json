@@ -1,0 +1,39 @@
+{
+  "name": "@template/root",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "turbo dev",
+    "dev:admin": "pnpm --filter @template/admin dev",
+    "dev:web": "pnpm --filter @template/web dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "test": "turbo test",
+    "test:e2e": "turbo test:e2e",
+    "storybook": "turbo storybook",
+    "storybook:build": "turbo storybook:build",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm guard:forbidden-changes",
+    "project:init": "tsx scripts/project-init.ts",
+    "api:sync": "tsx scripts/api-sync.ts",
+    "guard:forbidden-changes": "tsx scripts/guard-forbidden-changes.ts"
+  },
+  "devDependencies": {
+    "@template/eslint-config": "workspace:*",
+    "eslint": "^9.18.0",
+    "@template/tsconfig": "workspace:*",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.9",
+    "tsx": "^4.19.2",
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "packageManager": "pnpm@10.30.2"
+}

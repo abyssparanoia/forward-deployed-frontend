@@ -1,0 +1,10 @@
+node_modules
+dist
+.turbo
+.env.local
+.env.*.local
+*.local
+.DS_Store
+coverage
+playwright-report
+storybook-static
