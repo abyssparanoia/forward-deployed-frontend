@@ -6,7 +6,12 @@
 apps/          ← runnable applications
 packages/      ← shared libraries
 backend/       ← read-only git submodule (rapid-go BE)
-docs/          ← documentation
+docs/          ← documentation (human-facing)
+  guide/       ← designer-level dev guides (ja / en)
+  ai/          ← AI request templates for designers
+  architecture/← architecture docs
+  development/ ← technical setup guides
+ai-docs/       ← AI agent reference (not for humans)
 .claude/       ← Claude Code rules and skills
 .github/       ← CI workflows
 scripts/       ← utility scripts

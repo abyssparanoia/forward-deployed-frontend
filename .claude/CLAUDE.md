@@ -5,6 +5,8 @@ This repository is a **FE template monorepo** for AI-assisted React/TypeScript d
 ## Quick Reference
 
 - Docs: `docs/`
+- Designer guide (ja/en): `docs/guide/`
+- AI agent reference: `ai-docs/`
 - AI rules: `.claude/rules/`
 - Skills: `.claude/skills/`
 - Apps: `apps/admin/`, `apps/web/`
