@@ -242,6 +242,14 @@ And go through `.claude/skills/pr-review/README.md`:
 
 ---
 
+## Documentation
+
+- **Designer guide (日本語)**: [docs/guide/ja/01-overview.md](docs/guide/ja/01-overview.md)
+- **Designer guide (English)**: [docs/guide/en/01-overview.md](docs/guide/en/01-overview.md)
+- **AI agent reference**: [ai-docs/README.md](ai-docs/README.md)
+
+---
+
 ## Directory Structure
 
 ```
@@ -263,6 +271,8 @@ docs/
   ai/             AI request templates for designers
   architecture/   Architecture docs
   development/    Development guides
+  guide/          Designer-level dev guides (ja / en)
+ai-docs/          AI agent reference (not for humans)
 .claude/
   CLAUDE.md       Claude Code entry point
   rules/          AI behavior rules (00-10)
