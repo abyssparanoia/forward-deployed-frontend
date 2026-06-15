@@ -16,6 +16,7 @@ const envSchema = z.object({
   VITE_FIREBASE_AUTH_DOMAIN: z.string().optional(),
   VITE_FIREBASE_PROJECT_ID: z.string().optional(),
   VITE_FIREBASE_APP_ID: z.string().optional(),
+  VITE_FIREBASE_AUTH_EMULATOR_HOST: z.string().optional(),
 
   // Cognito
   VITE_COGNITO_REGION: z.string().optional(),
