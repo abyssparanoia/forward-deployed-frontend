@@ -1,11 +1,12 @@
 import { Outlet, useNavigate, useLocation } from 'react-router'
-import { LayoutDashboard, List, LogOut } from 'lucide-react'
+import { LayoutDashboard, List, Building2, LogOut } from 'lucide-react'
 import { AppShell, SideNav, TopNav, Button } from '@template/design-system'
 import { useAuth } from '@template/auth'
 
 const navItems = [
   { label: 'Dashboard', href: '/dashboard', icon: <LayoutDashboard size={16} /> },
   { label: 'Samples', href: '/samples', icon: <List size={16} /> },
+  { label: 'Tenants', href: '/tenants', icon: <Building2 size={16} /> },
 ]
 
 export function AdminLayout() {

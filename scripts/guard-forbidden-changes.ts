@@ -151,6 +151,11 @@ function checkForbiddenChanges(): Violation[] {
     })
   }
 
+  // Helper: a file is truly deleted if it existed in HEAD but is no longer in the index.
+  // This avoids false positives for newly added files (they don't exist in HEAD either).
+  const isDeleted = (f: string) =>
+    !!run(`git show HEAD:"${f}" 2>/dev/null`) && !run(`git ls-files -- "${f}"`)
+
   // 7. Test file deleted
   const deletedTests = changedFiles.filter(
     (f) =>
@@ -158,7 +163,7 @@ function checkForbiddenChanges(): Violation[] {
         f.endsWith('.test.tsx') ||
         f.endsWith('.spec.ts') ||
         f.endsWith('.spec.tsx')) &&
-      !run(`git show HEAD:"${f}" 2>/dev/null`),
+      isDeleted(f),
   )
   if (deletedTests.length > 0) {
     violations.push({
@@ -169,9 +174,7 @@ function checkForbiddenChanges(): Violation[] {
 
   // 8. Storybook file deleted
   const deletedStories = changedFiles.filter(
-    (f) =>
-      (f.endsWith('.stories.ts') || f.endsWith('.stories.tsx')) &&
-      !run(`git show HEAD:"${f}" 2>/dev/null`),
+    (f) => (f.endsWith('.stories.ts') || f.endsWith('.stories.tsx')) && isDeleted(f),
   )
   if (deletedStories.length > 0) {
     violations.push({
@@ -181,9 +184,7 @@ function checkForbiddenChanges(): Violation[] {
   }
 
   // 9. CI workflow file deleted
-  const deletedCI = changedFiles.filter(
-    (f) => f.startsWith('.github/workflows/') && !run(`git show HEAD:"${f}" 2>/dev/null`),
-  )
+  const deletedCI = changedFiles.filter((f) => f.startsWith('.github/workflows/') && isDeleted(f))
   if (deletedCI.length > 0) {
     violations.push({
       rule: 'CI_FILE_DELETED',
