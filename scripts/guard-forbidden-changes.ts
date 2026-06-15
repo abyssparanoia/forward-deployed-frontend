@@ -64,12 +64,16 @@ function checkForbiddenChanges(): Violation[] {
   const diffContent = getDiffContent()
 
   // 1. backend submodule changes (read-only)
+  // Allow initial submodule addition (not yet in HEAD); forbid any subsequent modification.
   const submoduleChanges = changedFiles.filter((f) => f.startsWith('backend/rapid-go'))
   if (submoduleChanges.length > 0) {
-    violations.push({
-      rule: 'BACKEND_SUBMODULE_MODIFIED',
-      details: `backend/rapid-go is read-only. Modified files: ${submoduleChanges.join(', ')}`,
-    })
+    const isNewSubmodule = !run('git ls-tree HEAD -- backend/rapid-go')
+    if (!isNewSubmodule) {
+      violations.push({
+        rule: 'BACKEND_SUBMODULE_MODIFIED',
+        details: `backend/rapid-go is read-only. Modified files: ${submoduleChanges.join(', ')}`,
+      })
+    }
   }
 
   // 2. Generated code manual edits
