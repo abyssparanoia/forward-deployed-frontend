@@ -6,6 +6,7 @@ import { DashboardPage } from './pages/dashboard'
 import { SampleListPage } from './features/sample/pages/sample-list'
 import { SampleDetailPage } from './features/sample/pages/sample-detail'
 import { SampleFormPage } from './features/sample/pages/sample-form'
+import { TenantListPage } from './features/tenant'
 import { ProtectedRoute } from './components/protected-route'
 import { AdminLayout } from './components/admin-layout'
 
@@ -29,6 +30,7 @@ export function App() {
         <Route path="samples/new" element={<SampleFormPage />} />
         <Route path="samples/:id" element={<SampleDetailPage />} />
         <Route path="samples/:id/edit" element={<SampleFormPage />} />
+        <Route path="tenants" element={<TenantListPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>

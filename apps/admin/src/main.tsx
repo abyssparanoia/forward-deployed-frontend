@@ -6,6 +6,8 @@ import { BrowserRouter } from 'react-router'
 import { Toaster } from 'sonner'
 import { AuthProvider, createAuthAdapter } from '@template/auth'
 import { env } from '@template/config'
+import { setApiTokenGetter } from './features/sample/hooks/use-sample-api'
+import { setTenantApiTokenGetter } from './features/tenant'
 import { App } from './app'
 import '@template/design-system/styles'
 
@@ -26,6 +28,8 @@ const queryClient = new QueryClient({
 })
 
 const authAdapter = createAuthAdapter(env.VITE_AUTH_PROVIDER)
+setApiTokenGetter(() => authAdapter.getIdToken())
+setTenantApiTokenGetter(() => authAdapter.getIdToken())
 
 prepare().then(() => {
   ReactDOM.createRoot(document.getElementById('root')!).render(
